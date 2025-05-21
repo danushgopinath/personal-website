@@ -21,11 +21,14 @@ body {
   font-family: var(--font-mont), Arial, Helvetica, sans-serif;
 }
 
-/* ---------- Utilities ---------- */
-.highlight {
-  @apply bg-clip-text text-transparent;
-}
+/* Seamless 50 % loop (because we duplicated the list) */
+@keyframes marquee-left  { from { transform: translateX(0);   }
+                           to   { transform: translateX(-50%); } }
 
-.glow-bg {
-  /* reserved class if you want a static glow – animation is in tailwind.config */
-}
+@keyframes marquee-right { from { transform: translateX(-50%); }
+                           to   { transform: translateX(0);    } }
+
+.animate-marquee-left  { animation: marquee-left 30s linear infinite; }
+.animate-marquee-right { animation: marquee-right 30s linear infinite; }
+
+
