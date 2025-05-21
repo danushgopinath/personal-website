@@ -1,3 +1,4 @@
+// components/ExperienceSection.tsx
 'use client';
 
 type Experience = {
@@ -40,13 +41,31 @@ export function ExperienceSection() {
       {/* Header */}
       <div className="max-w-5xl mx-auto">
         <h2 className="text-4xl font-bold mb-2">Experience</h2>
-        <div className="h-1 w-24 bg-cyan-500 mb-12 rounded" />
+        <div
+          className="
+            h-1 w-24 mb-12 rounded
+            bg-gradient-to-r
+              from-pink-400
+              via-purple-500
+              to-indigo-500
+          "
+        />
       </div>
 
       {/* Timeline */}
       <div className="relative max-w-5xl mx-auto">
-        {/* vertical line */}
-        <div className="absolute left-1/2 top-0 w-1 h-full bg-cyan-200 transform -translate-x-1/2" />
+        {/* gradient vertical line */}
+        <div
+          className="
+            absolute left-1/2 top-0
+            w-1 h-full
+            transform -translate-x-1/2
+            bg-gradient-to-b
+              from-pink-400
+              via-purple-500
+              to-indigo-500
+          "
+        />
 
         {experiences.map((exp, idx) => {
           const isLeft = idx % 2 === 0;
@@ -55,7 +74,7 @@ export function ExperienceSection() {
               key={exp.company}
               className="mb-12 md:grid md:grid-cols-9 md:items-start"
             >
-              {/* left card */}
+              {/* Left card */}
               <div
                 className={`md:col-span-4 ${
                   isLeft
@@ -64,26 +83,32 @@ export function ExperienceSection() {
                 }`}
               >
                 {isLeft && (
-                  <div className="inline-block bg-[var(--background)] border border-cyan-500 rounded-lg p-6 shadow-lg">
-                    <h3 className="text-xl font-semibold">{exp.company}</h3>
-                    <p className="text-sm text-gray-500 mb-1">{exp.location}</p>
-                    <p className="italic font-medium">{exp.role}</p>
-                    <p className="text-sm text-gray-500 mb-4">{exp.date}</p>
-                    <ul className="list-disc list-inside space-y-2">
-                      {exp.details.map((d) => (
-                        <li key={d}>{d}</li>
-                      ))}
-                    </ul>
+                  <div className="inline-block p-[1px] bg-gradient-to-tr from-pink-400 via-purple-500 to-indigo-500 rounded-lg">
+                    <div className="bg-[var(--background)] rounded-lg p-6 shadow-lg">
+                      <h3 className="text-xl font-semibold">{exp.company}</h3>
+                      <p className="text-sm text-gray-500 mb-1">
+                        {exp.location}
+                      </p>
+                      <p className="italic font-medium">{exp.role}</p>
+                      <p className="text-sm text-gray-500 mb-4">{exp.date}</p>
+                      <ul className="list-disc list-inside space-y-2">
+                        {exp.details.map((d) => (
+                          <li key={d}>{d}</li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 )}
               </div>
 
-              {/* center marker */}
+              {/* Center marker */}
               <div className="md:col-span-1 md:col-start-5 flex justify-center">
-                <div className="w-8 h-8 rounded-full bg-[var(--background)] border-4 border-cyan-500" />
+                <div className="inline-block p-[1px] bg-gradient-to-tr from-pink-400 via-purple-500 to-indigo-500 rounded-full">
+                  <div className="w-6 h-6 bg-[var(--background)] rounded-full" />
+                </div>
               </div>
 
-              {/* right card */}
+              {/* Right card */}
               <div
                 className={`md:col-span-4 ${
                   !isLeft
@@ -92,16 +117,20 @@ export function ExperienceSection() {
                 }`}
               >
                 {!isLeft && (
-                  <div className="inline-block bg-[var(--background)] border border-cyan-500 rounded-lg p-6 shadow-lg">
-                    <h3 className="text-xl font-semibold">{exp.company}</h3>
-                    <p className="text-sm text-gray-500 mb-1">{exp.location}</p>
-                    <p className="italic font-medium">{exp.role}</p>
-                    <p className="text-sm text-gray-500 mb-4">{exp.date}</p>
-                    <ul className="list-disc list-inside space-y-2">
-                      {exp.details.map((d) => (
-                        <li key={d}>{d}</li>
-                      ))}
-                    </ul>
+                  <div className="inline-block p-[1px] bg-gradient-to-tr from-pink-400 via-purple-500 to-indigo-500 rounded-lg">
+                    <div className="bg-[var(--background)] rounded-lg p-6 shadow-lg">
+                      <h3 className="text-xl font-semibold">{exp.company}</h3>
+                      <p className="text-sm text-gray-500 mb-1">
+                        {exp.location}
+                      </p>
+                      <p className="italic font-medium">{exp.role}</p>
+                      <p className="text-sm text-gray-500 mb-4">{exp.date}</p>
+                      <ul className="list-disc list-inside space-y-2">
+                        {exp.details.map((d) => (
+                          <li key={d}>{d}</li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 )}
               </div>

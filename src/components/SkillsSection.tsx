@@ -38,30 +38,36 @@ const tools: Skill[] = [
   { name: 'AWS',      icon: 'aws.svg'       },
 ];
 
-/* ─────── Card ─────── */
 function SkillCard({ skill }: { skill: Skill }) {
   return (
-    <div
-      className="
-        flex flex-col items-center justify-center
-        w-32 h-32 rounded-xl
-        border border-cyan-500/40
+    <div className="
+      inline-block
+      p-[1px]
+      bg-gradient-to-tr
+        from-pink-400/40
+        via-purple-500
+        to-indigo-500
+      rounded-xl
+    ">
+      <div className="
+        w-32 h-32
+        rounded-xl
         bg-[var(--background)]
-      "
-    >
-      <img
-        src={`/assets/skills/${skill.icon}`}
-        alt={skill.name}
-        className="w-12 h-12 mb-2 object-contain"
-      />
-      <span className="text-sm font-medium text-center">
-        {skill.name}
-      </span>
+        flex flex-col items-center justify-center
+      ">
+        <img
+          src={`/assets/skills/${skill.icon}`}
+          alt={skill.name}
+          className="w-12 h-12 mb-2 object-contain"
+        />
+        <span className="text-sm font-medium text-center">
+          {skill.name}
+        </span>
+      </div>
     </div>
   );
 }
 
-/* ─────── Scrolling row ─────── */
 function MarqueeRow({
   items,
   dir,
@@ -69,17 +75,13 @@ function MarqueeRow({
   items: Skill[];
   dir: 'left' | 'right';
 }) {
-  // duplicate the list so head meets tail → seamless loop
   const doubled = [...items, ...items];
-
   return (
     <div className="relative overflow-hidden w-full">
-      <div
-        className={`
-          flex w-max gap-12
-          ${dir === 'left' ? 'animate-marquee-left' : 'animate-marquee-right'}
-        `}
-      >
+      <div className={`
+        flex w-max gap-12
+        ${dir === 'left' ? 'animate-marquee-left' : 'animate-marquee-right'}
+      `}>
         {doubled.map((s, i) => (
           <SkillCard skill={s} key={`${s.name}-${i}`} />
         ))}
@@ -88,20 +90,29 @@ function MarqueeRow({
   );
 }
 
-/* ─────── Main section ─────── */
 export function SkillsSection() {
   return (
     <section
       id="skills"
       className="py-20 flex justify-center bg-[var(--background)] text-[var(--foreground)]"
     >
-      <div className="w-[80vw] px-6">
+      <div className="w-[85vw] px-6">
+        {/* Heading + gradient underline */}
         <h2 className="text-4xl font-bold mb-2">Skills</h2>
-        <div className="h-1 w-24 bg-cyan-500 mb-10 rounded" />
+        <div className="
+          h-1 w-24 mb-10 rounded
+          bg-gradient-to-r
+            from-pink-400
+            via-purple-500
+            to-indigo-500
+        " />
 
-        <MarqueeRow items={languages}  dir="left"  />
-        <MarqueeRow items={frameworks} dir="right" />
-        <MarqueeRow items={tools}      dir="left"  />
+        {/* Add vertical gap between rows with space-y-8 (or adjust to taste) */}
+        <div className="space-y-10">
+          <MarqueeRow items={languages}  dir="left"  />
+          <MarqueeRow items={frameworks} dir="right" />
+          <MarqueeRow items={tools}      dir="left"  />
+        </div>
       </div>
     </section>
   );

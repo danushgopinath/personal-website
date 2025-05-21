@@ -8,9 +8,17 @@ export function AboutSection() {
       className="py-20 px-6 bg-[var(--background)] text-[var(--foreground)]"
     >
       <div className="max-w-5xl mx-auto">
-        {/* Heading + underline */}
+        {/* Heading + gradient underline */}
         <h2 className="text-4xl font-bold mb-2">About Me</h2>
-        <div className="h-1 w-24 bg-cyan-500 mb-8 rounded"></div>
+        <div
+          className="
+            h-1 w-24 mb-8 rounded
+            bg-gradient-to-r
+              from-pink-400
+              via-purple-500
+              to-indigo-500
+          "
+        />
 
         {/* Two-column layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -31,7 +39,7 @@ export function AboutSection() {
 
           {/* Right: personal bullet-points */}
           <div>
-            <ul className="list-disc list-inside space-y-2 marker:text-cyan-900">
+            <ul className="list-disc list-inside space-y-2 marker:text-pink-400">
               <li>🎸 Music lover (80’s rock through today’s pop)</li>
               <li>🍔 Certified foodie—always up for new flavors</li>
               <li>⚽ Massive Real Madrid fan</li>
@@ -44,4 +52,3 @@ export function AboutSection() {
     </section>
   );
 }
-
