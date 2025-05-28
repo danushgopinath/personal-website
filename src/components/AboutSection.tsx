@@ -1,4 +1,3 @@
-// components/AboutSection.tsx
 'use client';
 
 export function AboutSection() {
@@ -7,44 +6,57 @@ export function AboutSection() {
       id="about"
       className="py-20 px-6 bg-[var(--background)] text-[var(--foreground)]"
     >
-      <div className="max-w-5xl mx-auto">
-        {/* Heading + gradient underline */}
-        <h2 className="text-4xl font-bold mb-2">About Me</h2>
-        <div
-          className="
-            h-1 w-24 mb-8 rounded
-            bg-gradient-to-r
-              from-pink-400
-              via-purple-500
-              to-indigo-500
-          "
-        />
+      <div className="w-full max-w-7xl mx-auto px-6">
+        {/* Centered Heading with arrows and dots */}
+        <div className="flex flex-col items-center text-center mb-10">
+          <div className="flex items-center w-full justify-center gap-4">
+            <div className="flex items-center w-full max-w-md">
+              <div className="flex-1 h-0.5 bg-gradient-to-r from-transparent via-pink-400 to-pink-500 relative"></div>
+            </div>
+
+            <h2 className="text-4xl font-bold whitespace-nowrap">About Me</h2>
+
+            <div className="flex items-center w-full max-w-md">
+              <div className="flex-1 h-0.5 bg-gradient-to-l from-transparent via-pink-400 to-pink-500 relative"></div>
+            </div>
+          </div>
+
+          {/* Three dots below */}
+          <div className="flex gap-2 mt-4">
+            <span className="w-3 h-3 bg-pink-400 rounded-full"></span>
+            <span className="w-3 h-3 bg-purple-500 rounded-full"></span>
+            <span className="w-3 h-3 bg-indigo-500 rounded-full"></span>
+          </div>
+        </div>
 
         {/* Two-column layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-[60%_40%] gap-12">
           {/* Left: paragraph from resume */}
           <div>
-            <p className="text-lg leading-relaxed">
-              I’m currently pursuing a Master of Science in Computer Science at
-              Northeastern University in Boston, where I’m diving deep into
-              algorithms, databases and AI foundations. I graduated with a
-              Bachelor of Technology in Information Technology from SSN College
-              of Engineering (Chennai) with an 8.83 GPA, building solid
-              fundamentals in data structures, networks and machine learning.
-              Through both academic projects and industry internships, I’ve
-              developed a knack for architecting scalable full-stack
-              applications and solving real-world problems with AI/ML.
+            <p className="text-[1.325rem] leading-relaxed text-justify">
+              I am currently pursuing my Master of Science in Computer Science at Northeastern University, 
+              with coursework in programming paradigms, algorithms, AI, and cloud computing. I hold a 
+              B.Tech in Information Technology from Sri Sivasubramaniya Nadar College of Engineering, where 
+              I graduated with a GPA of 3.8. Professionally, I've interned as an AIOps Engineer at 
+              ThoughtData, where I led a team to integrate advanced time series correlation models like 
+              FastDTW and EDM into an enterprise platform. Prior to that, I interned at Fidelity Investments, 
+              where I developed and deployed a MEAN stack web application that streamlined server monitoring, 
+              improving operational efficiency significantly. I have strong technical skills across Python, 
+              C++, Java, React, Node.js, and cloud platforms such as AWS and Azure. I'm also passionate about 
+              research—having worked on projects involving Alzheimer's classification from medical imaging and 
+              real-time sign language translation systems for healthcare.
             </p>
           </div>
 
           {/* Right: personal bullet-points */}
           <div>
-            <ul className="list-disc list-inside space-y-2 marker:text-pink-400">
-              <li>🎸 Music lover (80’s rock through today’s pop)</li>
-              <li>🍔 Certified foodie—always up for new flavors</li>
-              <li>⚽ Massive Real Madrid fan</li>
-              <li>🏎️ Motorsports enthusiast</li>
-              <li>🎥 Avid rom-com aficionado</li>
+            <ul className="text-[1.325rem] list-disc list-outside pl-5 space-y-4 marker:text-pink-400 text-justify">
+              <li><span className="text-[1.8rem]">⚽</span> Die-hard Real Madrid fan—Hala Madrid!</li>
+              <li><span className="text-[1.8rem]">🏎️</span> Motorsport enthusiast—Formula 1, MotoGP, you name it</li>
+              <li><span className="text-[1.8rem]">🍜</span> Certified foodie—on a mission to find the best street food</li>
+              <li><span className="text-[1.8rem]">🎬</span> Crime & thriller movie buff—plot twists are my jam</li>
+              <li><span className="text-[1.8rem]">🛣️</span> Road trip junkie—music on, map off</li>
+              <li><span className="text-[1.8rem]">🧗</span> Always up for an adventure—cliff-jumping, trekking, or getting lost on purpose</li>
             </ul>
           </div>
         </div>

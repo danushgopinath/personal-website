@@ -21,17 +21,15 @@ export function Navbar() {
 
   return (
     <nav
-        className={`fixed inset-x-0 top-0 z-30
-                    bg-opacity-90 backdrop-blur-sm 
-                    shadow-lg transition-transform duration-300
-                    ${show ? 'translate-y-0' : '-translate-y-full'}`}
+        className={`fixed inset-x-0 top-0 z-30 bg-opacity-90 backdrop-blur-sm shadow-lg 
+                    transition-transform duration-300 ${show ? 'translate-y-0' : '-translate-y-full'}`}
     >    
-      <ul className="flex justify-center gap-6 md:gap-10 py-3 md:py-4">
+      <ul className="flex justify-center gap-6 md:gap-10 py-4 md:py-5">
         {items.map((item) => (
           <li key={item}>
             <Link
               href={`#${item.toLowerCase()}`}
-              className="text-lg md:text-xl font-semibold text-white hover:text-cyan-400 transition-colors"
+              className="text-lg md:text-2xl text-white hover:text-cyan-400 transition-colors"
             >
               {item}
             </Link>

@@ -9,7 +9,7 @@ export function HeroSection() {
       {/* animated blobs */}
       <div className="pointer-events-none absolute inset-0 -z-10 animate-glow bg-gradient-to-tr from-fuchsia-500/30 via-cyan-400/30 to-yellow-300/30" />
 
-      <div className="relative z-10 flex flex-col md:flex-row items-center gap-12 px-6 max-w-5xl">
+      <div className="relative z-10 flex flex-col md:flex-row items-center gap-12 px-6 w-full max-w-7xl mx-auto">
         {/* PHOTO with pink→purple→indigo ring */}
         <div className="shrink-0">
           <div
@@ -29,8 +29,8 @@ export function HeroSection() {
         </div>
 
         {/* TEXT */}
-        <div className="text-center md:text-left space-y-6 max-w-xl">
-          <h1 className="text-5xl md:text-7xl font-extrabold leading-tight">
+        <div className="text-center md:text-left space-y-6 max-w-2xl">
+          <h1 className="text-6xl md:text-7xl font-extrabold leading-tight">
             <span aria-hidden="true" role="img">
               Hello 👋
             </span>
@@ -41,7 +41,7 @@ export function HeroSection() {
             </span>
           </h1>
 
-          <p className="text-lg md:text-xl">
+          <p className="text-xl md:text-2xl">
             Computer-science grad student at Northeastern, passionate about
             full-stack product development and solving real-world problems
             with&nbsp;AI&nbsp;/&nbsp;ML.
@@ -50,7 +50,7 @@ export function HeroSection() {
           <a
             href="#projects"
             className="
-              inline-block px-8 py-3 rounded-full font-semibold bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500
+              inline-block px-8 py-3 rounded-full font-semibold bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500 text-lg md:text-xl
               text-black hover:opacity-90 transition-shadow shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500
             "
           >

@@ -9,7 +9,7 @@ export function FooterSection() {
     <footer className="bg-black text-[var(--foreground)] py-8">
       <div className="max-w-5xl mx-auto px-6">
         {/* Social links */}
-        <div className="flex justify-center space-x-8 mb-4">
+        <div className="text-[1.25rem] flex justify-center space-x-8 mb-4">
           <Link
             href="https://instagram.com/danushgopinath"
             target="_blank"
@@ -37,7 +37,7 @@ export function FooterSection() {
         </div>
 
         {/* Copyright */}
-        <p className="text-center text-sm">
+        <p className="text-center text-xl">
           © {year} Danush Gopinath. All rights reserved.
         </p>
       </div>

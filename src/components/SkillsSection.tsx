@@ -2,7 +2,6 @@
 
 type Skill = { name: string; icon: string };
 
-/* ─────── Your data ─────── */
 const languages: Skill[] = [
   { name: 'Python',       icon: 'python.svg' },
   { name: 'C++',          icon: 'cpp.svg'    },
@@ -41,26 +40,23 @@ const tools: Skill[] = [
 function SkillCard({ skill }: { skill: Skill }) {
   return (
     <div className="
-      inline-block
-      p-[1px]
-      bg-gradient-to-tr
-        from-pink-400/40
-        via-purple-500
-        to-indigo-500
+      p-[2px]
       rounded-xl
+      bg-gradient-to-tr from-pink-400 via-purple-500 to-indigo-500
     ">
       <div className="
         w-32 h-32
-        rounded-xl
         bg-[var(--background)]
+        rounded-xl
         flex flex-col items-center justify-center
+        text-center
       ">
         <img
           src={`/assets/skills/${skill.icon}`}
           alt={skill.name}
-          className="w-12 h-12 mb-2 object-contain"
+          className="w-18 h-18 mb-2 object-contain"
         />
-        <span className="text-sm font-medium text-center">
+        <span className="text-base font-semibold">
           {skill.name}
         </span>
       </div>
@@ -97,17 +93,29 @@ export function SkillsSection() {
       className="py-20 flex justify-center bg-[var(--background)] text-[var(--foreground)]"
     >
       <div className="w-[85vw] px-6">
-        {/* Heading + gradient underline */}
-        <h2 className="text-4xl font-bold mb-2">Skills</h2>
-        <div className="
-          h-1 w-24 mb-10 rounded
-          bg-gradient-to-r
-            from-pink-400
-            via-purple-500
-            to-indigo-500
-        " />
+        {/* Centered Heading with arrows and dots */}
+        <div className="flex flex-col items-center text-center mb-12">
+          <div className="flex items-center w-full justify-center gap-4">
+            <div className="flex items-center w-full max-w-md">
+              <div className="flex-1 h-0.5 bg-gradient-to-r from-transparent via-pink-400 to-pink-500 relative"></div>
+            </div>
 
-        {/* Add vertical gap between rows with space-y-8 (or adjust to taste) */}
+            <h2 className="text-4xl font-bold whitespace-nowrap">Skills</h2>
+
+            <div className="flex items-center w-full max-w-md">
+              <div className="flex-1 h-0.5 bg-gradient-to-l from-transparent via-pink-400 to-pink-500 relative"></div>
+            </div>
+          </div>
+
+          {/* Three dots below */}
+          <div className="flex gap-2 mt-4">
+            <span className="w-3 h-3 bg-pink-400 rounded-full"></span>
+            <span className="w-3 h-3 bg-purple-500 rounded-full"></span>
+            <span className="w-3 h-3 bg-indigo-500 rounded-full"></span>
+          </div>
+        </div>
+
+        {/* Animated Skill Rows */}
         <div className="space-y-10">
           <MarqueeRow items={languages}  dir="left"  />
           <MarqueeRow items={frameworks} dir="right" />

@@ -1,8 +1,12 @@
-// components/ExperienceSection.tsx
 'use client';
+
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 type Experience = {
   company: string;
+  logo?: string;
   location: string;
   role: string;
   date: string;
@@ -12,6 +16,7 @@ type Experience = {
 const experiences: Experience[] = [
   {
     company: 'ThoughtData',
+    // logo: '/assets/company/toughtdata.png',
     location: 'Remote - Boston',
     role: 'AIOps Intern',
     date: 'March 2024 - July 2024',
@@ -22,6 +27,7 @@ const experiences: Experience[] = [
   },
   {
     company: 'Fidelity Investments',
+    // logo: '/assets/company/fidelity.svg',
     location: 'Remote - Bangalore',
     role: 'Software Developer Intern',
     date: 'June 2023 - August 2023',
@@ -33,110 +39,130 @@ const experiences: Experience[] = [
 ];
 
 export function ExperienceSection() {
+  useEffect(() => {
+    AOS.init({ once: true, duration: 800, offset: 100 });
+  }, []);
+
   return (
     <section
       id="experience"
       className="py-20 px-6 bg-[var(--background)] text-[var(--foreground)]"
     >
-      {/* Header */}
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-4xl font-bold mb-2">Experience</h2>
-        <div
-          className="
-            h-1 w-24 mb-12 rounded
-            bg-gradient-to-r
-              from-pink-400
-              via-purple-500
-              to-indigo-500
-          "
-        />
-      </div>
+      <div className="w-full max-w-7xl mx-auto px-6">
+        {/* Section Header */}
+        <div className="flex flex-col items-center text-center mb-12">
+          <div className="flex items-center w-full justify-center gap-4">
+            <div className="flex items-center w-full max-w-md">
+              <div className="flex-1 h-0.5 bg-gradient-to-r from-transparent via-pink-400 to-pink-500 relative"></div>
+            </div>
+            <h2 className="text-4xl font-bold whitespace-nowrap">Experience</h2>
+            <div className="flex items-center w-full max-w-md">
+              <div className="flex-1 h-0.5 bg-gradient-to-l from-transparent via-pink-400 to-pink-500 relative"></div>
+            </div>
+          </div>
+          <div className="flex gap-2 mt-4">
+            <span className="w-3 h-3 bg-pink-400 rounded-full"></span>
+            <span className="w-3 h-3 bg-purple-500 rounded-full"></span>
+            <span className="w-3 h-3 bg-indigo-500 rounded-full"></span>
+          </div>
+        </div>
 
-      {/* Timeline */}
-      <div className="relative max-w-5xl mx-auto">
-        {/* gradient vertical line */}
-        <div
-          className="
-            absolute left-1/2 top-0
-            w-1 h-full
-            transform -translate-x-1/2
-            bg-gradient-to-b
-              from-pink-400
-              via-purple-500
-              to-indigo-500
-          "
-        />
+        {/* Timeline */}
+        <div className="relative max-w-5xl mx-auto">
+          {/* Vertical gradient line */}
+          <div
+            className="absolute left-1/2 top-0 transform -translate-x-1/2 h-full w-1
+              bg-gradient-to-b from-pink-400 via-purple-500 to-indigo-500 z-0"
+          />
 
-        {experiences.map((exp, idx) => {
-          const isLeft = idx % 2 === 0;
-          return (
-            <div
-              key={exp.company}
-              className="mb-12 md:grid md:grid-cols-9 md:items-start"
-            >
-              {/* Left card */}
+          {experiences.map((exp, idx) => {
+            const isLeft = idx % 2 === 0;
+
+            return (
               <div
-                className={`md:col-span-4 ${
-                  isLeft
-                    ? 'md:col-start-1 md:text-right md:pr-8'
-                    : 'md:col-start-6 md:pl-8'
-                }`}
+                key={exp.company}
+                className="mb-12 md:grid md:grid-cols-9 md:items-start relative z-10"
               >
-                {isLeft && (
-                  <div className="inline-block p-[1px] bg-gradient-to-tr from-pink-400 via-purple-500 to-indigo-500 rounded-lg">
-                    <div className="bg-[var(--background)] rounded-lg p-6 shadow-lg">
-                      <h3 className="text-xl font-semibold">{exp.company}</h3>
-                      <p className="text-sm text-gray-500 mb-1">
-                        {exp.location}
-                      </p>
-                      <p className="italic font-medium">{exp.role}</p>
-                      <p className="text-sm text-gray-500 mb-4">{exp.date}</p>
-                      <ul className="list-disc list-inside space-y-2">
-                        {exp.details.map((d) => (
-                          <li key={d}>{d}</li>
-                        ))}
-                      </ul>
+                {/* Left Card */}
+                <div
+                  className={`md:col-span-4 ${
+                    isLeft
+                      ? 'md:col-start-1 md:text-right md:pr-8'
+                      : 'md:col-start-6 md:pl-8'
+                  }`}
+                >
+                  {isLeft && (
+                    <div
+                      className="inline-block p-[1px] bg-gradient-to-tr from-pink-400 via-purple-500 to-indigo-500 rounded-lg"
+                      data-aos="fade-right"
+                    >
+                      <div className="bg-[#050505] text-[var(--foreground)] rounded-lg p-6">
+                        {exp.logo && (
+                          <img
+                            src={exp.logo}
+                            alt={exp.company}
+                            className="w-50 h-auto mb-4 center mx-auto"
+                          />
+                        )}
+                        <h3 className="text-2xl font-semibold mb-1">{exp.company}</h3>
+                        <p className="text-sm text-gray-600">{exp.location}</p>
+                        <p className="italic font-medium">{exp.role}</p>
+                        <p className="text-sm text-gray-600 mb-4">{exp.date}</p>
+                        <ul className="list-disc list-inside space-y-2 text-left text-[1.125rem]">
+                          {exp.details.map((d) => (
+                            <li key={d}>{d}</li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
-                  </div>
-                )}
-              </div>
+                  )}
+                </div>
 
-              {/* Center marker */}
-              <div className="md:col-span-1 md:col-start-5 flex justify-center">
-                <div className="inline-block p-[1px] bg-gradient-to-tr from-pink-400 via-purple-500 to-indigo-500 rounded-full">
-                  <div className="w-6 h-6 bg-[var(--background)] rounded-full" />
+                {/* Center Marker */}
+                <div className="md:col-span-1 md:col-start-5 flex justify-center items-start">
+                  <div className="inline-block p-[1px] bg-gradient-to-tr from-pink-400 via-purple-500 to-indigo-500 rounded-full">
+                    <div className="w-6 h-6 bg-[var(--background)] rounded-full" />
+                  </div>
+                </div>
+
+                {/* Right Card */}
+                <div
+                  className={`md:col-span-4 ${
+                    !isLeft
+                      ? 'md:col-start-6 md:text-left md:pl-8'
+                      : 'md:col-start-1 md:pr-8'
+                  }`}
+                >
+                  {!isLeft && (
+                    <div
+                      className="inline-block p-[1px] bg-gradient-to-tr from-pink-400 via-purple-500 to-indigo-500 rounded-lg"
+                      data-aos="fade-left"
+                    >
+                      <div className="bg-[#050505] text-[var(--foreground)] rounded-lg p-6">
+                        {exp.logo && (
+                          <img
+                            src={exp.logo}
+                            alt={exp.company}
+                            className="w-75 h-auto mb-4 center mx-auto"
+                          />
+                        )}
+                        <h3 className="text-2xl font-semibold mb-1">{exp.company}</h3>
+                        <p className="text-sm text-gray-600">{exp.location}</p>
+                        <p className="italic font-medium">{exp.role}</p>
+                        <p className="text-sm text-gray-600 mb-4">{exp.date}</p>
+                        <ul className="list-disc list-inside space-y-2 text-left text-[1.125rem]">
+                          {exp.details.map((d) => (
+                            <li key={d}>{d}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
-
-              {/* Right card */}
-              <div
-                className={`md:col-span-4 ${
-                  !isLeft
-                    ? 'md:col-start-6 md:text-left md:pl-8'
-                    : 'md:col-start-1 md:pr-8'
-                }`}
-              >
-                {!isLeft && (
-                  <div className="inline-block p-[1px] bg-gradient-to-tr from-pink-400 via-purple-500 to-indigo-500 rounded-lg">
-                    <div className="bg-[var(--background)] rounded-lg p-6 shadow-lg">
-                      <h3 className="text-xl font-semibold">{exp.company}</h3>
-                      <p className="text-sm text-gray-500 mb-1">
-                        {exp.location}
-                      </p>
-                      <p className="italic font-medium">{exp.role}</p>
-                      <p className="text-sm text-gray-500 mb-4">{exp.date}</p>
-                      <ul className="list-disc list-inside space-y-2">
-                        {exp.details.map((d) => (
-                          <li key={d}>{d}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </section>
   );
