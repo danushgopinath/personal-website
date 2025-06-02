@@ -14,6 +14,10 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* ---------- Base styles ---------- */
 body {
   background: var(--background);
@@ -30,5 +34,4 @@ body {
 
 .animate-marquee-left  { animation: marquee-left 30s linear infinite; }
 .animate-marquee-right { animation: marquee-right 30s linear infinite; }
-
 
