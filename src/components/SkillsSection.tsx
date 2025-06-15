@@ -1,10 +1,13 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 type Skill = { name: string; icon: string };
 
+/* ──────── Data ──────── */
 const languages: Skill[] = [
   { name: 'Python',       icon: 'python.svg' },
   { name: 'C++',          icon: 'cpp.svg'    },
@@ -40,7 +43,7 @@ const tools: Skill[] = [
   { name: 'AWS',      icon: 'aws.svg'       },
 ];
 
-// Simplified SkillCard: only entry animation, no hover logic
+/* ──────── Small components ──────── */
 function SkillCard({ skill, index }: { skill: Skill; index: number }) {
   return (
     <motion.div
@@ -48,6 +51,8 @@ function SkillCard({ skill, index }: { skill: Skill; index: number }) {
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5, delay: index * 0.05 }}
+      data-aos="fade-up"
+      data-aos-delay={index * 50}
     >
       <div className="p-[2px] rounded-xl bg-gradient-to-tr from-pink-400 via-purple-500 to-indigo-500">
         <div className="w-30 h-30 bg-[var(--background)] rounded-xl flex flex-col items-center justify-center text-center">
@@ -63,7 +68,6 @@ function SkillCard({ skill, index }: { skill: Skill; index: number }) {
   );
 }
 
-// MarqueeRow without any pause or restart logic
 function MarqueeRow({
   items,
   dir,
@@ -77,7 +81,7 @@ function MarqueeRow({
   const duration = 30 / speed;
 
   return (
-    <div className="relative overflow-hidden w-full py-4">
+    <div className="relative overflow-hidden w-full py-4" data-aos="fade-up">
       <motion.div
         className="flex w-max gap-12"
         animate={{
@@ -95,69 +99,54 @@ function MarqueeRow({
         }}
       >
         {doubled.map((s, i) => (
-          <SkillCard
-            skill={s}
-            key={`${s.name}-${i}`}
-            index={i}
-          />
+          <SkillCard key={`${s.name}-${i}`} skill={s} index={i} />
         ))}
       </motion.div>
 
-      {/* Fade overlays on edges */}
+      {/* Edge fade-outs */}
       <div className="absolute top-0 left-0 w-20 h-full bg-gradient-to-r from-[var(--background)] to-transparent z-10" />
       <div className="absolute top-0 right-0 w-20 h-full bg-gradient-to-l from-[var(--background)] to-transparent z-10" />
     </div>
   );
 }
 
+/* ──────── Main Section ──────── */
 export function SkillsSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
   const isHeadingInView = useInView(headingRef, { once: true, amount: 0.5 });
   const controls = useAnimation();
 
+  /* Framer heading trigger */
   useEffect(() => {
     if (isHeadingInView) controls.start('visible');
   }, [isHeadingInView, controls]);
 
+  /* AOS global init */
+  useEffect(() => {
+    AOS.init({ once: true, duration: 800, offset: 100 });
+  }, []);
+
+  /* Variants */
   const headingVariants = {
     hidden: { opacity: 0, y: -20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-    },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
   };
-
   const lineVariants = {
     hidden: { scaleX: 0 },
-    visible: {
-      scaleX: 1,
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-    },
+    visible: { scaleX: 1, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
   };
-
   const dotsVariants = {
     hidden: { opacity: 0, scale: 0.5 },
     visible: {
       opacity: 1,
       scale: 1,
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.1,
-        duration: 0.4,
-        ease: 'easeOut',
-      },
+      transition: { delayChildren: 0.3, staggerChildren: 0.1, duration: 0.4, ease: 'easeOut' },
     },
   };
-
   const dotVariant = {
     hidden: { opacity: 0, scale: 0 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
-    },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
   };
 
   return (
@@ -165,38 +154,23 @@ export function SkillsSection() {
       id="skills"
       ref={sectionRef}
       className="py-20 flex justify-center bg-[var(--background)] text-[var(--foreground)] relative overflow-hidden"
+      data-aos="fade-up"
     >
-      {/* Decorative background blobs */}
+      {/* Breathing blobs */}
       <motion.div
         className="absolute top-40 left-20 w-80 h-80 rounded-full bg-indigo-500/5 blur-3xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.2, 0.4, 0.2],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
+        animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
+        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
       />
-
       <motion.div
         className="absolute bottom-40 right-20 w-96 h-96 rounded-full bg-pink-400/5 blur-3xl"
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.2, 0.3, 0.2],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: 'easeInOut',
-          delay: 2,
-        }}
+        animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.3, 0.2] }}
+        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
       />
 
       <div className="w-[85vw] px-6 relative z-10">
-        {/* Centered Heading with animated lines and dots */}
-        <div className="flex flex-col items-center text-center mb-12">
+        {/* Heading */}
+        <div className="flex flex-col items-center text-center mb-12" data-aos="fade-up">
           <motion.div
             ref={headingRef}
             className="flex items-center w-full justify-center gap-4"
@@ -239,20 +213,21 @@ export function SkillsSection() {
           </motion.div>
         </div>
 
-        {/* Animated Skill Rows (all always-moving) */}
+        {/* Infinite rows */}
         <div className="space-y-4">
-          <MarqueeRow items={languages} dir="left" speed={1.2} />
+          <MarqueeRow items={languages}  dir="left"  speed={1.2} />
           <MarqueeRow items={frameworks} dir="right" speed={0.8} />
-          <MarqueeRow items={tools} dir="left" speed={1} />
+          <MarqueeRow items={tools}      dir="left"  speed={1.0} />
         </div>
 
-        {/* Proficiency Bars (no subtitle line) */}
+        {/* Proficiency bars */}
         <motion.div
           className="mt-20 relative"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
+          data-aos="fade-up"
         >
           <div className="text-center mb-8">
             <motion.h3
@@ -269,11 +244,11 @@ export function SkillsSection() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               { name: 'Frontend Development', level: 90 },
-              { name: 'Backend Development', level: 85 },
-              { name: 'Machine Learning', level: 80 },
-              { name: 'Cloud Services', level: 75 },
-              { name: 'DevOps', level: 70 },
-              { name: 'UI/UX Design', level: 65 },
+              { name: 'Backend Development',  level: 85 },
+              { name: 'Machine Learning',     level: 80 },
+              { name: 'Cloud Services',       level: 75 },
+              { name: 'DevOps',               level: 70 },
+              { name: 'UI/UX Design',         level: 65 },
             ].map((skill, index) => (
               <motion.div
                 key={skill.name}
@@ -282,6 +257,8 @@ export function SkillsSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
               >
                 <div className="flex justify-between mb-2">
                   <span className="font-medium">{skill.name}</span>

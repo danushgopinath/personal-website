@@ -48,19 +48,19 @@ export function ExperienceSection() {
       id="experience"
       className="py-20 px-6 bg-[var(--background)] text-[var(--foreground)]"
     >
-      <div className="w-full max-w-7xl mx-auto px-6">
+      <div className="w-full max-w-7xl mx-auto px-6" data-aos="fade-up">
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-12">
+        <div className="flex flex-col items-center text-center mb-12" data-aos="fade-up">
           <div className="flex items-center w-full justify-center gap-4">
             <div className="flex items-center w-full max-w-md">
-              <div className="flex-1 h-0.5 bg-gradient-to-r from-transparent via-pink-400 to-pink-500 relative"></div>
+              <div className="flex-1 h-0.5 bg-gradient-to-r from-transparent via-pink-400 to-pink-500" />
             </div>
             <h2 className="text-4xl font-bold whitespace-nowrap">Experience</h2>
             <div className="flex items-center w-full max-w-md">
-              <div className="flex-1 h-0.5 bg-gradient-to-l from-transparent via-pink-400 to-pink-500 relative"></div>
+              <div className="flex-1 h-0.5 bg-gradient-to-l from-transparent via-pink-400 to-pink-500" />
             </div>
           </div>
-          <div className="flex gap-2 mt-4">
+          <div className="flex gap-2 mt-4" data-aos="fade-up">
             <span className="w-3 h-3 bg-pink-400 rounded-full"></span>
             <span className="w-3 h-3 bg-purple-500 rounded-full"></span>
             <span className="w-3 h-3 bg-indigo-500 rounded-full"></span>
@@ -68,11 +68,10 @@ export function ExperienceSection() {
         </div>
 
         {/* Timeline */}
-        <div className="relative max-w-5xl mx-auto">
+        <div className="relative max-w-5xl mx-auto" data-aos="fade-up">
           {/* Vertical gradient line */}
           <div
-            className="absolute left-1/2 top-0 transform -translate-x-1/2 h-full w-1
-              bg-gradient-to-b from-pink-400 via-purple-500 to-indigo-500 z-0"
+            className="absolute left-1/2 top-0 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-pink-400 via-purple-500 to-indigo-500 z-0"
           />
 
           {experiences.map((exp, idx) => {
@@ -82,6 +81,7 @@ export function ExperienceSection() {
               <div
                 key={exp.company}
                 className="mb-12 md:grid md:grid-cols-9 md:items-start relative z-10"
+                data-aos="fade-up"
               >
                 {/* Left Card */}
                 <div
@@ -94,7 +94,7 @@ export function ExperienceSection() {
                   {isLeft && (
                     <div
                       className="inline-block p-[1px] bg-gradient-to-tr from-pink-400 via-purple-500 to-indigo-500 rounded-lg"
-                      data-aos="fade-right"
+                      data-aos="fade-up"
                     >
                       <div className="bg-[#050505] text-[var(--foreground)] rounded-lg p-6">
                         {exp.logo && (
@@ -119,7 +119,7 @@ export function ExperienceSection() {
                 </div>
 
                 {/* Center Marker */}
-                <div className="md:col-span-1 md:col-start-5 flex justify-center items-start">
+                <div className="md:col-span-1 md:col-start-5 flex justify-center items-start" data-aos="fade-up">
                   <div className="inline-block p-[1px] bg-gradient-to-tr from-pink-400 via-purple-500 to-indigo-500 rounded-full">
                     <div className="w-6 h-6 bg-[var(--background)] rounded-full" />
                   </div>
@@ -136,7 +136,7 @@ export function ExperienceSection() {
                   {!isLeft && (
                     <div
                       className="inline-block p-[1px] bg-gradient-to-tr from-pink-400 via-purple-500 to-indigo-500 rounded-lg"
-                      data-aos="fade-left"
+                      data-aos="fade-up"
                     >
                       <div className="bg-[#050505] text-[var(--foreground)] rounded-lg p-6">
                         {exp.logo && (
