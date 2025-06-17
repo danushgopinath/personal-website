@@ -11,7 +11,6 @@ A clean, responsive portfolio built with **Next.js 14** + **Tailwind CSS**. It
 * **Next.js** (App Router)
 * **Tailwind CSS**
 * **React** animations (AOS / Framer Motion)
-* **Vercel** for CI + production hosting
 
 ## ▶️ Quick Start
 
