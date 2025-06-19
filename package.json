@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "next export",
+    "deploy": "cross-env DEPLOY_ENV=GH_PAGES npm run build && npm run export && npx gh-pages -d out"
   },
   "dependencies": {
     "@react-spring/web": "^10.0.1",
@@ -38,6 +40,7 @@
     "@types/three": "^0.177.0",
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
+    "gh-pages": "^6.3.0",
     "prettier": "^3.5.3",
     "tailwindcss": "^4",
     "typescript": "^5"

@@ -41,6 +41,7 @@ export function ContactSection() {
       }
     } catch (err) {
       toast.error('Something went wrong. Please try later.');
+      console.error('Error sending message:', err);
     } finally {
       setIsSubmitting(false);
     }

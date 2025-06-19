@@ -35,7 +35,7 @@ export function HeroSection() {
               Hello 👋
             </span>
             <br />
-            I'm&nbsp;
+            I&apos;m&nbsp;
             <span className="bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500 bg-clip-text text-transparent">
               Danush
             </span>
