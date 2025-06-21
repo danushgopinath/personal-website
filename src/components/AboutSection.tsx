@@ -1,5 +1,3 @@
-//MAKING CHANGE IN ABOUT FOR AWS PROJECT
-
 'use client';
 
 import { useRef, useEffect } from 'react';
